@@ -1,4 +1,4 @@
-package org.free.software.libraries.recuperation;
+package org.free.software.libraries.querying;
 
 import org.free.software.libraries.Library;
 import org.free.software.libraries.LibraryIdentifier;
