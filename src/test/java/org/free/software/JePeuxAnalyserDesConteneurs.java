@@ -1,7 +1,10 @@
 package org.free.software;
 
 import org.free.software.libraries.Library;
-import org.free.software.libraries.LibraryIdentifier;
+import org.free.software.libraries.maven.Group;
+import org.free.software.libraries.maven.LibraryIdentifier;
+import org.free.software.libraries.maven.LibraryName;
+import org.free.software.libraries.LibraryVersion;
 import org.free.software.libraries.querying.Libraries;
 import org.free.software.libraries.querying.infrastructure.LibrariesCompiledInSameProject;
 import org.junit.Before;
@@ -10,29 +13,22 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.free.software.libraries.asserts.LibraryAssert.assertThat;
 
-public class JePeuxAnalyserDesConteneurs
-{
+public class JePeuxAnalyserDesConteneurs {
+
+    private Libraries libraries;
+
     @Before
     public void setUp() {
-        Libraries libraries = new LibrariesCompiledInSameProject();
+        libraries = new LibrariesCompiledInSameProject();
     }
 
     @Test
-    public void je_peux_recuperer_une_librairie_depuis_un_jar() {
-        LibraryIdentifier identifier = new LibraryIdentifier("packageAnalyzer", "1.0-SNAPSHOT");
-        Libraries libraries = new LibrariesCompiledInSameProject();
+    public void a_library_has_folders_classes_and_packages() {
+        LibraryIdentifier identifier = new LibraryIdentifier(new LibraryName("packageAnalyzer"), new LibraryVersion("1.0-SNAPSHOT"), new Group("org.free.software"));
 
         Library library = libraries.getByIdentifier(identifier);
 
         assertThat(library).hasClasses();
         assertThat(library).hasPackages();
-    }
-
-    private void it_has_folders_classes_and_packages() {
-
-    }
-
-    private void i_analyze(Library library) {
-
     }
 }
